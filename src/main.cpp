@@ -9,6 +9,7 @@
 #include "route_planner.h"
 
 using namespace std::experimental;
+using namespace std;
 
 static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
 {   
@@ -57,14 +58,47 @@ int main(int argc, const char **argv)
 	float start_y;
 	float end_x;
 	float end_y;
-	std::cout << "Enter start_x (from 0 to 99): ";
-	std::cin >> start_x;
-	std::cout << "Enter start_y (from 0 to 99): ";
-	std::cin >> start_y;
-	std::cout << "Enter end_x (from 0 to 99): ";
-	std::cin >> end_x;
-	std::cout << "Enter end_y (from 0 to 99): ";
-	std::cin >> end_y;
+
+	// start_x
+	cout << "Enter a start_x from 0 to 100: ";
+	cin >> start_x;
+	while (!cin || start_x < 0 || start_x > 100) {
+		cout << "Invalid entry. Enter a start_x from 0 to 100: ";
+		cin.clear();
+	    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cin >> start_x;
+	}
+
+	// start_y
+	cout << "Enter a start_y from 0 to 100: ";
+	cin >> start_y;
+	while (!cin || start_y < 0 || start_y > 100) {
+        cout << "Invalid entry. Enter a start_y from 0 to 100: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> start_y;
+    }
+
+	// end_x
+    cout << "Enter a end_x from 0 to 100: ";
+    cin >> end_x;
+    while (!cin || end_x < 0 || end_x > 100) {
+        cout << "Invalid entry. Enter a end_x from 0 to 100: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> end_x;
+    }
+	
+	// end_y
+    cout << "Enter a end_y from 0 to 100: ";
+    cin >> end_y;
+    while (!cin || end_y < 0 || end_y > 100) {
+        cout << "Invalid entry. Enter a end_y from 0 to 100: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> end_y;
+    }
+
 
     // Build Model.
     RouteModel model{osm_data};
